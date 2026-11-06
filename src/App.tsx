@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import serviceImage from "../assets/ServiceVela.jpg";
 import heroPoster from "../assets/VelaImage.jpg";
 import soundtrack from "../assets/Dawn of a New Era.mp3";
+import ServicePreview from "./ServicePreview";
 
 function ArrowIcon() {
   return (
@@ -112,125 +113,6 @@ function ServiceIcon({ type }: { type: number }) {
         </>
       )}
     </svg>
-  );
-}
-
-function CapabilityBoard({ type }: { type: number }) {
-  if (type === 0)
-    return (
-      <div className="board inbox-board" aria-label="Example inbox organized by Vela">
-        <div className="board-top">
-          <div className="board-heading">
-            <span className="board-kicker">YOUR MESSAGES, SIMPLIFIED</span>
-            <span>Priority inbox</span>
-          </div>
-          <span className="board-tag">All clear</span>
-        </div>
-        <div className="inbox-filter">
-          <span>
-            Needs you <b>1</b>
-          </span>
-          <span>
-            Handled by Vela <b>3</b>
-          </span>
-        </div>
-        <div className="message-row">
-          <span className="sender-avatar">J</span>
-          <div>
-            <b>Jamie</b>
-            <span>Weekend plans?</span>
-            <em>A personal note worth your time.</em>
-          </div>
-          <small>Just now</small>
-        </div>
-        <div className="message-row subdued">
-          <span className="sender-avatar">S</span>
-          <div>
-            <b>Studio</b>
-            <span>Your booking is confirmed</span>
-          </div>
-          <small>10:24</small>
-        </div>
-        <div className="board-summary">
-          <span className="status-dot" />
-          <div>
-            <b>3 replies ready for review</b>
-            <span>A head start. The final word is yours.</span>
-          </div>
-        </div>
-      </div>
-    );
-  if (type === 1)
-    return (
-      <div className="board calendar-board" aria-label="Example day planned by Vela">
-        <div className="board-top">
-          <div className="board-heading">
-            <span className="board-kicker">A LITTLE MORE BALANCE</span>
-            <span>Your Wednesday</span>
-          </div>
-          <span className="board-tag">Balanced</span>
-        </div>
-        <div className="week-strip">
-          {["M", "T", "W", "T", "F"].map((day, i) => (
-            <div className={i === 2 ? "selected" : ""} key={i}>
-              <span>{day}</span>
-              <b>{12 + i}</b>
-            </div>
-          ))}
-        </div>
-        <div className="calendar-slot">
-          <small>09:00</small>
-          <div>
-            <b>Time to focus</b>
-            <span>Protected by Vela</span>
-          </div>
-        </div>
-        <div className="calendar-slot secondary">
-          <small>11:30</small>
-          <div>
-            <b>A little breathing room</b>
-            <span>No meetings. Just a moment for you.</span>
-          </div>
-        </div>
-        <div className="calendar-note">
-          <span className="status-dot" />
-          Focus time, without the rush.
-        </div>
-      </div>
-    );
-  return (
-    <div className="board tasks-board" aria-label="Example daily tasks completed by Vela">
-      <div className="board-top">
-        <div className="board-heading">
-          <span className="board-kicker">LESS ON YOUR MIND</span>
-          <span>The little things</span>
-        </div>
-        <span className="board-tag">All done</span>
-      </div>
-      <div className="task-completion">
-        <b>
-          3 <span>/ 3</span>
-        </b>
-        <span>little wins today</span>
-      </div>
-      <div className="task-progress">
-        <span />
-      </div>
-      {[
-        ["Morning briefing prepared", "Your day, in one clear overview"],
-        ["Appointment scheduled", "A time that fits your calendar"],
-        ["Follow-up sent", "One less loose end to remember"],
-      ].map(([task, note]) => (
-        <div className="completed-task" key={task}>
-          <span className="task-check">✓</span>
-          <div>
-            <b>{task}</b>
-            <span>{note}</span>
-          </div>
-        </div>
-      ))}
-      <div className="tasks-note">You’re good to go.</div>
-    </div>
   );
 }
 
@@ -472,7 +354,7 @@ export default function App() {
                   </div>
                   <h3>{feature.title}</h3>
                   <p>{feature.copy}</p>
-                  <CapabilityBoard type={index} />
+                  <ServicePreview type={index} />
                 </div>
                 <div className="capability-details">
                   <p className="eyebrow">What Vela helps you do</p>
