@@ -24,61 +24,31 @@ const capabilities = [
   {
     label: "Inbox",
     title: "Inbox, handled.",
-    copy: "Only what needs you.",
     description: "Less sorting. More clarity.",
     details: [
-      [
-        "Find what matters",
-        "Bring important conversations to the front, so requests and messages that need your attention don’t get lost in the noise.",
-      ],
-      [
-        "Catch up quickly",
-        "Get a concise summary of long email threads, with key decisions, questions, and next steps in one place.",
-      ],
-      [
-        "Start with a draft",
-        "Prepare replies to routine messages for you to review and edit, instead of starting from a blank page.",
-      ],
+      ["Find what matters", "Important messages, first."],
+      ["Catch up quickly", "Long threads, briefly summarized."],
+      ["Start with a draft", "Replies ready for your review."],
     ],
   },
   {
     label: "Calendar",
     title: "A day that flows.",
-    copy: "Space for what matters.",
     description: "A plan with room to breathe.",
     details: [
-      [
-        "See the day ahead",
-        "Bring appointments, meetings, and open time into a clear daily view so you know what’s coming next.",
-      ],
-      [
-        "Make scheduling simpler",
-        "Find available time for an appointment or meeting and prepare the event details for your confirmation.",
-      ],
-      [
-        "Protect your focus",
-        "Plan dedicated time for deep work and leave breathing room between commitments, rather than filling every gap.",
-      ],
+      ["See the day ahead", "Your schedule, at a glance."],
+      ["Make scheduling simpler", "Find a time that fits."],
+      ["Protect your focus", "Focus blocks. Space between meetings."],
     ],
   },
   {
     label: "Daily tasks",
     title: "Already done.",
-    copy: "Little tasks. Off your mind.",
     description: "From loose ends to next steps.",
     details: [
-      [
-        "Begin with a briefing",
-        "Get a short overview of your schedule, important messages, and outstanding tasks before the day gets busy.",
-      ],
-      [
-        "Turn requests into a plan",
-        "Organize everyday to-dos, such as booking an appointment, into clear actions with the details you need to move forward.",
-      ],
-      [
-        "Keep follow-ups in view",
-        "Track unfinished requests and prepare follow-up messages, so a small task doesn’t become something you forget.",
-      ],
+      ["Begin with a briefing", "Your daily essentials, in one place."],
+      ["Turn requests into a plan", "Everyday requests, clear next steps."],
+      ["Keep follow-ups in view", "Nothing important slips through."],
     ],
   },
 ];
@@ -353,11 +323,9 @@ export default function App() {
                     </p>
                   </div>
                   <h3>{feature.title}</h3>
-                  <p>{feature.copy}</p>
                   <ServicePreview type={index} />
                 </div>
                 <div className="capability-details">
-                  <p className="eyebrow">What Vela helps you do</p>
                   <h4>{feature.description}</h4>
                   <dl>
                     {feature.details.map(([title, description]) => (

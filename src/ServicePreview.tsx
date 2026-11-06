@@ -3,36 +3,27 @@ import "./service-preview.css";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const plans = [
-  ["Weekly planning", "A fresh start, with a clear plan.", "Team catch-up"],
-  ["Make something great", "A quiet block for your best work.", "Project check-in"],
-  ["Time to focus", "Your most important work comes first.", "Design catch-up"],
-  ["Move things forward", "Space to finish what you started.", "Coffee with Jamie"],
-  ["Finish on a good note", "Wrap up the week without the rush.", "Weekly reflection"],
+  ["Weekly planning", "Team catch-up"],
+  ["Make something great", "Project check-in"],
+  ["Time to focus", "Design catch-up"],
+  ["Move things forward", "Coffee with Jamie"],
+  ["Weekly wrap-up", "Weekly reflection"],
 ];
 const taskItems = [
   {
     title: "Morning briefing",
-    subtitle: "Your day, neatly summarized",
     time: "08:00",
-    detail:
-      "Two meetings, one important message, and a clear afternoon. Your briefing brings the essentials together before you begin.",
-    action: "Briefing prepared",
+    detail: "2 meetings. 1 priority message. Afternoon free.",
   },
   {
     title: "Appointment booked",
-    subtitle: "A time that works for you",
     time: "08:12",
-    detail:
-      "Studio appointment · Thursday, 15 May at 14:00. The confirmation and appointment details are together in your calendar.",
-    action: "Added to calendar",
+    detail: "Studio · Thursday, 15 May · 14:00",
   },
   {
     title: "Follow-up sent",
-    subtitle: "One less thing to remember",
     time: "08:24",
-    detail:
-      "A short follow-up to the studio, confirming your appointment details. The conversation is ready whenever you need it.",
-    action: "Follow-up complete",
+    detail: "Studio appointment confirmed.",
   },
 ];
 
@@ -42,8 +33,7 @@ function InboxPreview() {
     <>
       <div className="sp-heading">
         <div>
-          <p className="sp-overline">A little less noise</p>
-          <h4>Your inbox, in order.</h4>
+          <h4>Priority inbox</h4>
         </div>
         <span className="sp-count">04</span>
       </div>
@@ -67,14 +57,8 @@ function InboxPreview() {
               <div>
                 <div className="sp-mail-meta">
                   <b>Jamie</b>
-                  <small>Just now</small>
                 </div>
                 <strong>Weekend plans?</strong>
-                <p>Shall we try that little place by the water?</p>
-                <span className="sp-pill">
-                  <i />
-                  Personal · worth your time
-                </span>
               </div>
             </div>
             <div className="sp-mail">
@@ -82,10 +66,8 @@ function InboxPreview() {
               <div>
                 <div className="sp-mail-meta">
                   <b>Studio</b>
-                  <small>10:24</small>
                 </div>
-                <strong>Your booking is confirmed</strong>
-                <p>Appointment details, already organized.</p>
+                <strong>Booking confirmed</strong>
               </div>
               <span className="sp-mail-check" aria-label="Organized">
                 ✓
@@ -95,7 +77,6 @@ function InboxPreview() {
               <span className="sp-avatar sp-avatar-sand">N</span>
               <div>
                 <b>The Weekly Edit</b>
-                <p>A little reading, saved for later.</p>
               </div>
               <span className="sp-mail-saved">Saved</span>
             </div>
@@ -103,30 +84,18 @@ function InboxPreview() {
         ) : (
           <div className="sp-draft">
             <div className="sp-draft-top">
-              <span className="sp-pill">Draft · ready for review</span>
+              <span className="sp-pill">Ready for review</span>
               <small>1 of 3</small>
             </div>
-            <p className="sp-draft-to">
-              To Studio <span>· Re: Your booking</span>
-            </p>
-            <p>Thanks for confirming! Thursday at 2 works perfectly. Looking forward to it.</p>
-            <div className="sp-draft-signature">Prepared by Vela. Sent only when you’re ready.</div>
+            <p className="sp-draft-to">To Studio</p>
+            <p>Thanks for confirming! Thursday at 2 works perfectly.</p>
           </div>
         )}
       </div>
       <div className="sp-insight">
         <span className="sp-insight-symbol">✦</span>
         <div>
-          <b>
-            {view === "priority"
-              ? "The important things rise to the top."
-              : "A head start, in your own words."}
-          </b>
-          <p>
-            {view === "priority"
-              ? "Less sorting. More space for a real conversation."
-              : "Review and edit before anything is sent."}
-          </p>
+          <b>{view === "priority" ? "3 replies drafted for you" : "You review. You send."}</b>
         </div>
       </div>
     </>
@@ -139,8 +108,7 @@ function CalendarPreview() {
     <>
       <div className="sp-heading">
         <div>
-          <p className="sp-overline">May 12 — 16 · Example week</p>
-          <h4>A day with breathing room.</h4>
+          <h4>Your week</h4>
         </div>
       </div>
       <div className="sp-week" role="group" aria-label="Explore an example week">
@@ -163,18 +131,16 @@ function CalendarPreview() {
           <time>09:00</time>
           <div className="sp-event sp-event-focus">
             <div>
-              <span className="sp-event-category">FOCUS TIME</span>
               <span className="sp-event-duration">90 min</span>
             </div>
             <b>{plans[day][0]}</b>
-            <p>{plans[day][1]}</p>
-            <span className="sp-protected">◇ Protected by Vela</span>
           </div>
         </div>
         <div className="sp-agenda-row">
           <time>10:30</time>
           <div className="sp-breath">
-            <span />A little breathing room
+            <span />
+            Free time
             <span />
           </div>
         </div>
@@ -182,18 +148,16 @@ function CalendarPreview() {
           <time>11:00</time>
           <div className="sp-event sp-event-meeting">
             <div>
-              <b>{plans[day][2]}</b>
+              <b>{plans[day][1]}</b>
               <span className="sp-event-duration">30 min</span>
             </div>
-            <p>Time to connect, without the back-to-back.</p>
           </div>
         </div>
       </div>
       <div className="sp-insight">
         <span className="sp-insight-symbol">✦</span>
         <div>
-          <b>Your time is part of the plan.</b>
-          <p>Focus protected. Space between commitments.</p>
+          <b>Focus time protected</b>
         </div>
       </div>
     </>
@@ -201,13 +165,12 @@ function CalendarPreview() {
 }
 
 function TasksPreview() {
-  const [expanded, setExpanded] = useState<number | null>(0);
+  const [expanded, setExpanded] = useState<number | null>(null);
   return (
     <>
       <div className="sp-heading">
         <div>
-          <p className="sp-overline">Your everyday, a little lighter</p>
-          <h4>Small things. Taken care of.</h4>
+          <h4>The little things</h4>
         </div>
       </div>
       <div className="sp-task-summary">
@@ -217,9 +180,7 @@ function TasksPreview() {
           </span>
         </div>
         <div>
-          <b>A clear list. A clearer head.</b>
-          <p>All your little tasks, wrapped up.</p>
-          <span className="sp-pill">✓ You’re good to go</span>
+          <b>All done.</b>
         </div>
       </div>
       <div className="sp-task-list">
@@ -234,7 +195,6 @@ function TasksPreview() {
               <span className="sp-check">✓</span>
               <span className="sp-task-name">
                 <b>{task.title}</b>
-                <span>{task.subtitle}</span>
               </span>
               <time>{task.time}</time>
               <span className="sp-chevron" aria-hidden="true">
@@ -247,14 +207,10 @@ function TasksPreview() {
               className="sp-task-detail"
             >
               <p>{task.detail}</p>
-              <span>
-                {task.action} <span aria-hidden="true">↗</span>
-              </span>
             </div>
           </div>
         ))}
       </div>
-      <div className="sp-task-footer">A few less things to carry into your day.</div>
     </>
   );
 }
@@ -266,17 +222,10 @@ export default function ServicePreview({ type }: { type: number }) {
         <span className="sp-wordmark">
           vela<span>.</span>
         </span>
-        <span className="sp-chrome-label">Your everyday companion</span>
-        <span className="sp-demo">Interactive demo</span>
+        <span className="sp-demo">Demo</span>
       </div>
       <div className="sp-body">
         {type === 0 ? <InboxPreview /> : type === 1 ? <CalendarPreview /> : <TasksPreview />}
-      </div>
-      <div className="sp-bottom">
-        <span>
-          <i />A glimpse of life with Vela
-        </span>
-        <span>Made for your everyday</span>
       </div>
     </div>
   );
