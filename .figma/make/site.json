@@ -1,0 +1,11 @@
+{
+  "title": "Figma Make App",
+  "description": "An AI automation assistant for busy professionals that manages inboxes, coordinates calendars, and delivers daily briefings to help reclaim time.",
+  "language": "en",
+  "robots": {
+    "index": false
+  },
+  "icons": {
+    "icon": "/favicon.png"
+  }
+}
