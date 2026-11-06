@@ -81,19 +81,64 @@ const capabilities = [
   },
 ];
 
+function ServiceIcon({ type }: { type: number }) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {type === 0 ? (
+        <>
+          <rect x="3" y="5" width="18" height="14" rx="3" />
+          <path d="m3 7 9 6 9-6" />
+        </>
+      ) : type === 1 ? (
+        <>
+          <rect x="4" y="5" width="16" height="16" rx="3" />
+          <path d="M8 3v4m8-4v4M4 11h16m-11 5 2 2 4-4" />
+        </>
+      ) : (
+        <>
+          <rect x="5" y="4" width="14" height="17" rx="3" />
+          <path d="M9 4V2h6v2m-6 8 2 2 4-4m-6 7h6" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 function CapabilityBoard({ type }: { type: number }) {
   if (type === 0)
     return (
       <div className="board inbox-board" aria-label="Example inbox organized by Vela">
         <div className="board-top">
-          <span>Priority inbox</span>
+          <div className="board-heading">
+            <span className="board-kicker">YOUR MESSAGES, SIMPLIFIED</span>
+            <span>Priority inbox</span>
+          </div>
           <span className="board-tag">All clear</span>
+        </div>
+        <div className="inbox-filter">
+          <span>
+            Needs you <b>1</b>
+          </span>
+          <span>
+            Handled by Vela <b>3</b>
+          </span>
         </div>
         <div className="message-row">
           <span className="sender-avatar">J</span>
           <div>
             <b>Jamie</b>
             <span>Weekend plans?</span>
+            <em>A personal note worth your time.</em>
           </div>
           <small>Just now</small>
         </div>
@@ -107,7 +152,10 @@ function CapabilityBoard({ type }: { type: number }) {
         </div>
         <div className="board-summary">
           <span className="status-dot" />
-          Routine replies drafted<span>3</span>
+          <div>
+            <b>3 replies ready for review</b>
+            <span>A head start. The final word is yours.</span>
+          </div>
         </div>
       </div>
     );
@@ -115,7 +163,10 @@ function CapabilityBoard({ type }: { type: number }) {
     return (
       <div className="board calendar-board" aria-label="Example day planned by Vela">
         <div className="board-top">
-          <span>Your Wednesday</span>
+          <div className="board-heading">
+            <span className="board-kicker">A LITTLE MORE BALANCE</span>
+            <span>Your Wednesday</span>
+          </div>
           <span className="board-tag">Balanced</span>
         </div>
         <div className="week-strip">
@@ -137,23 +188,44 @@ function CapabilityBoard({ type }: { type: number }) {
           <small>11:30</small>
           <div>
             <b>A little breathing room</b>
+            <span>No meetings. Just a moment for you.</span>
           </div>
+        </div>
+        <div className="calendar-note">
+          <span className="status-dot" />
+          Focus time, without the rush.
         </div>
       </div>
     );
   return (
     <div className="board tasks-board" aria-label="Example daily tasks completed by Vela">
       <div className="board-top">
-        <span>The little things</span>
-        <span className="board-tag">3 of 3</span>
+        <div className="board-heading">
+          <span className="board-kicker">LESS ON YOUR MIND</span>
+          <span>The little things</span>
+        </div>
+        <span className="board-tag">All done</span>
+      </div>
+      <div className="task-completion">
+        <b>
+          3 <span>/ 3</span>
+        </b>
+        <span>little wins today</span>
       </div>
       <div className="task-progress">
         <span />
       </div>
-      {["Morning briefing prepared", "Appointment scheduled", "Follow-up sent"].map((task) => (
+      {[
+        ["Morning briefing prepared", "Your day, in one clear overview"],
+        ["Appointment scheduled", "A time that fits your calendar"],
+        ["Follow-up sent", "One less loose end to remember"],
+      ].map(([task, note]) => (
         <div className="completed-task" key={task}>
           <span className="task-check">✓</span>
-          <span>{task}</span>
+          <div>
+            <b>{task}</b>
+            <span>{note}</span>
+          </div>
         </div>
       ))}
       <div className="tasks-note">You’re good to go.</div>
@@ -282,7 +354,10 @@ export default function App() {
                 <div className="capability-preview">
                   <div className="capability-label">
                     <span>0{index + 1}</span>
-                    <p className="eyebrow">{feature.label}</p>
+                    <p className="eyebrow">
+                      <ServiceIcon type={index} />
+                      {feature.label}
+                    </p>
                   </div>
                   <h3>{feature.title}</h3>
                   <p>{feature.copy}</p>
