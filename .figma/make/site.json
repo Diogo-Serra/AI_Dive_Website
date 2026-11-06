@@ -1,11 +1,14 @@
 {
-  "title": "Vela — Reclaim your time",
-  "description": "Meet Vela. A lightweight, local-first AI companion imagined to handle repetitive daily tasks and give you time back.",
+  "title": "Vela — Your time. Back to you.",
+  "description": "Less inbox noise. A calmer calendar. Everyday tasks off your mind. Meet Vela, a lightweight, local-first AI companion designed to give you time back.",
   "language": "en",
   "robots": {
     "index": false
   },
   "icons": {
-    "icon": "/favicon.png"
+    "icon": "/vela-icon.png"
+  },
+  "openGraph": {
+    "image": "/vela-social.png"
   }
 }

@@ -23,16 +23,61 @@ const capabilities = [
     label: "Inbox",
     title: "Inbox, handled.",
     copy: "Only what needs you.",
+    description: "Less sorting. More clarity.",
+    details: [
+      [
+        "Find what matters",
+        "Bring important conversations to the front, so requests and messages that need your attention don’t get lost in the noise.",
+      ],
+      [
+        "Catch up quickly",
+        "Get a concise summary of long email threads, with key decisions, questions, and next steps in one place.",
+      ],
+      [
+        "Start with a draft",
+        "Prepare replies to routine messages for you to review and edit, instead of starting from a blank page.",
+      ],
+    ],
   },
   {
     label: "Calendar",
     title: "A day that flows.",
     copy: "Space for what matters.",
+    description: "A plan with room to breathe.",
+    details: [
+      [
+        "See the day ahead",
+        "Bring appointments, meetings, and open time into a clear daily view so you know what’s coming next.",
+      ],
+      [
+        "Make scheduling simpler",
+        "Find available time for an appointment or meeting and prepare the event details for your confirmation.",
+      ],
+      [
+        "Protect your focus",
+        "Plan dedicated time for deep work and leave breathing room between commitments, rather than filling every gap.",
+      ],
+    ],
   },
   {
     label: "Daily tasks",
     title: "Already done.",
     copy: "Little tasks. Off your mind.",
+    description: "From loose ends to next steps.",
+    details: [
+      [
+        "Begin with a briefing",
+        "Get a short overview of your schedule, important messages, and outstanding tasks before the day gets busy.",
+      ],
+      [
+        "Turn requests into a plan",
+        "Organize everyday to-dos, such as booking an appointment, into clear actions with the details you need to move forward.",
+      ],
+      [
+        "Keep follow-ups in view",
+        "Track unfinished requests and prepare follow-up messages, so a small task doesn’t become something you forget.",
+      ],
+    ],
   },
 ];
 
@@ -143,13 +188,6 @@ export default function App() {
       </a>
       <header className="site-header">
         <a className="brand" href="#" aria-label="Vela home">
-          <img
-            className="brand-mascot"
-            src="/assets/vela-buddy.png"
-            alt=""
-            width="42"
-            height="48"
-          />
           <span className="brand-name">
             vela<span>.</span>
           </span>
@@ -203,7 +241,7 @@ export default function App() {
             <h1 id="hero-title">
               Your time.
               <br />
-              <span>Back.</span>
+              <span>Back to you.</span>
             </h1>
             <p className="hero-copy">
               Meet Vela. Your lightweight AI companion for the everyday busywork.
@@ -241,13 +279,27 @@ export default function App() {
           <div className="capability-grid">
             {capabilities.map((feature, index) => (
               <article className="capability" key={feature.title}>
-                <div className="capability-label">
-                  <span>0{index + 1}</span>
-                  <p className="eyebrow">{feature.label}</p>
+                <div className="capability-preview">
+                  <div className="capability-label">
+                    <span>0{index + 1}</span>
+                    <p className="eyebrow">{feature.label}</p>
+                  </div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.copy}</p>
+                  <CapabilityBoard type={index} />
                 </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.copy}</p>
-                <CapabilityBoard type={index} />
+                <div className="capability-details">
+                  <p className="eyebrow">What Vela helps you do</p>
+                  <h4>{feature.description}</h4>
+                  <dl>
+                    {feature.details.map(([title, description]) => (
+                      <div key={title}>
+                        <dt>{title}</dt>
+                        <dd>{description}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </article>
             ))}
           </div>
@@ -298,14 +350,6 @@ export default function App() {
 
       <footer className="section-wrap">
         <a className="brand" href="#" aria-label="Vela home">
-          <img
-            className="brand-mascot"
-            src="/assets/vela-buddy.png"
-            alt=""
-            width="42"
-            height="48"
-            loading="lazy"
-          />
           <span className="brand-name">
             vela<span>.</span>
           </span>
