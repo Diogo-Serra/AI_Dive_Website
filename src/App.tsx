@@ -21,20 +21,100 @@ function ArrowIcon() {
 const capabilities = [
   {
     label: "Inbox",
-    title: "Less sorting. More living.",
-    copy: "The important messages, surfaced. The routine replies, drafted. Your inbox, a little lighter.",
+    title: "Inbox, handled.",
+    copy: "Only what needs you.",
   },
   {
     label: "Calendar",
     title: "A day that flows.",
-    copy: "Scheduling, reminders, and the back-and-forth. Handled quietly, without taking over your day.",
+    copy: "Space for what matters.",
   },
   {
     label: "Daily tasks",
-    title: "A head start. Every day.",
-    copy: "A quick briefing. A clear plan. The repetitive little things, already taken care of.",
+    title: "Already done.",
+    copy: "Little tasks. Off your mind.",
   },
 ];
+
+function CapabilityBoard({ type }: { type: number }) {
+  if (type === 0)
+    return (
+      <div className="board inbox-board" aria-label="Example inbox organized by Vela">
+        <div className="board-top">
+          <span>Priority inbox</span>
+          <span className="board-tag">All clear</span>
+        </div>
+        <div className="message-row">
+          <span className="sender-avatar">J</span>
+          <div>
+            <b>Jamie</b>
+            <span>Weekend plans?</span>
+          </div>
+          <small>Just now</small>
+        </div>
+        <div className="message-row subdued">
+          <span className="sender-avatar">S</span>
+          <div>
+            <b>Studio</b>
+            <span>Your booking is confirmed</span>
+          </div>
+          <small>10:24</small>
+        </div>
+        <div className="board-summary">
+          <span className="status-dot" />
+          Routine replies drafted<span>3</span>
+        </div>
+      </div>
+    );
+  if (type === 1)
+    return (
+      <div className="board calendar-board" aria-label="Example day planned by Vela">
+        <div className="board-top">
+          <span>Your Wednesday</span>
+          <span className="board-tag">Balanced</span>
+        </div>
+        <div className="week-strip">
+          {["M", "T", "W", "T", "F"].map((day, i) => (
+            <div className={i === 2 ? "selected" : ""} key={i}>
+              <span>{day}</span>
+              <b>{12 + i}</b>
+            </div>
+          ))}
+        </div>
+        <div className="calendar-slot">
+          <small>09:00</small>
+          <div>
+            <b>Time to focus</b>
+            <span>Protected by Vela</span>
+          </div>
+        </div>
+        <div className="calendar-slot secondary">
+          <small>11:30</small>
+          <div>
+            <b>A little breathing room</b>
+          </div>
+        </div>
+      </div>
+    );
+  return (
+    <div className="board tasks-board" aria-label="Example daily tasks completed by Vela">
+      <div className="board-top">
+        <span>The little things</span>
+        <span className="board-tag">3 of 3</span>
+      </div>
+      <div className="task-progress">
+        <span />
+      </div>
+      {["Morning briefing prepared", "Appointment scheduled", "Follow-up sent"].map((task) => (
+        <div className="completed-task" key={task}>
+          <span className="task-check">✓</span>
+          <span>{task}</span>
+        </div>
+      ))}
+      <div className="tasks-note">You’re good to go.</div>
+    </div>
+  );
+}
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -63,7 +143,16 @@ export default function App() {
       </a>
       <header className="site-header">
         <a className="brand" href="#" aria-label="Vela home">
-          vela<span>.</span>
+          <img
+            className="brand-mascot"
+            src="/assets/vela-buddy.png"
+            alt=""
+            width="42"
+            height="48"
+          />
+          <span className="brand-name">
+            vela<span>.</span>
+          </span>
         </a>
         <nav className={menuOpen ? "open" : ""} aria-label="Primary navigation">
           <a href="#capabilities" onClick={() => setMenuOpen(false)}>
@@ -102,20 +191,22 @@ export default function App() {
             poster={heroPoster}
             aria-hidden="true"
             tabIndex={-1}
+            onCanPlay={(event) => {
+              void event.currentTarget.play().catch(() => undefined);
+            }}
           >
             <source src="/assets/vela-promo.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay" />
           <div className="hero-content">
-            <p className="eyebrow">Small footprint. A little more freedom.</p>
+            <p className="eyebrow">Small companion. Big difference.</p>
             <h1 id="hero-title">
-              Reclaim your time.
+              Your time.
               <br />
-              <span>Meet Vela.</span>
+              <span>Back.</span>
             </h1>
             <p className="hero-copy">
-              Lightweight. Quick on its feet. Vela takes on your repetitive daily tasks, giving you
-              time for what matters.
+              Meet Vela. Your lightweight AI companion for the everyday busywork.
             </p>
             <div className="hero-actions">
               <button className="button button-light" onClick={openDialog}>
@@ -146,10 +237,6 @@ export default function App() {
               <br />
               <span>More room for you.</span>
             </h2>
-            <p>
-              A small, agile companion for the things you do on repeat. Less effort. Fewer
-              interruptions. More of your day back.
-            </p>
           </div>
           <div className="capability-grid">
             {capabilities.map((feature, index) => (
@@ -160,6 +247,7 @@ export default function App() {
                 </div>
                 <h3>{feature.title}</h3>
                 <p>{feature.copy}</p>
+                <CapabilityBoard type={index} />
               </article>
             ))}
           </div>
@@ -179,10 +267,7 @@ export default function App() {
                 Consider it done.
               </h2>
             </div>
-            <p>
-              Tell Vela what you need. It takes care of the busywork—quickly, quietly, and without
-              the extra steps.
-            </p>
+            <p>A little help with the everyday. Just ask.</p>
           </div>
           <figure className="service-frame">
             <img
@@ -213,7 +298,17 @@ export default function App() {
 
       <footer className="section-wrap">
         <a className="brand" href="#" aria-label="Vela home">
-          vela<span>.</span>
+          <img
+            className="brand-mascot"
+            src="/assets/vela-buddy.png"
+            alt=""
+            width="42"
+            height="48"
+            loading="lazy"
+          />
+          <span className="brand-name">
+            vela<span>.</span>
+          </span>
         </a>
         <p>Intelligence that gives time back.</p>
         <span>© {new Date().getFullYear()} Vela</span>
