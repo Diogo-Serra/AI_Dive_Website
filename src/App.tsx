@@ -248,10 +248,30 @@ export default function App() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    audio.muted = false;
     audio.volume = 0.35;
+    function removeFallback() {
+      document.removeEventListener("click", startOnInteraction);
+      document.removeEventListener("keydown", startOnInteraction);
+    }
+    function startOnInteraction(event: Event) {
+      // The sound control manages its own playback; never override an opt-out.
+      if (event.target instanceof Element && event.target.closest(".sound-toggle")) return;
+      if (event instanceof KeyboardEvent && event.key !== "Enter" && event.key !== " ") return;
+      void audio!.play().catch(() => {
+        // Keep the manual play control available if playback is still blocked.
+      });
+    }
+    document.addEventListener("click", startOnInteraction);
+    document.addEventListener("keydown", startOnInteraction);
+    audio.addEventListener("play", removeFallback, { once: true });
     void audio.play().catch(() => {
-      // Visitors can start playback themselves if the browser blocks autoplay.
+      // Browsers may require a visitor interaction before audible playback.
     });
+    return () => {
+      removeFallback();
+      audio.removeEventListener("play", removeFallback);
+    };
   }, []);
 
   async function toggleAudio() {
@@ -287,6 +307,7 @@ export default function App() {
       <audio
         ref={audioRef}
         src={soundtrack}
+        autoPlay
         preload="auto"
         loop={false}
         onPlay={() => {
