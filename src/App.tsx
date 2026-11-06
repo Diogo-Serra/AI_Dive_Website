@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import serviceImage from "../assets/ServiceVela.jpg";
 import heroPoster from "../assets/VelaImage.jpg";
+import soundtrack from "../assets/Dawn of a New Era.mp3";
 
 function ArrowIcon() {
   return (
@@ -237,8 +238,36 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [deployOpen, setDeployOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const [audioEnded, setAudioEnded] = useState(false);
+  const [audioError, setAudioError] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.35;
+    void audio.play().catch(() => {
+      // Visitors can start playback themselves if the browser blocks autoplay.
+    });
+  }, []);
+
+  async function toggleAudio() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (!audio.paused) {
+      audio.pause();
+      return;
+    }
+    if (audio.ended) audio.currentTime = 0;
+    try {
+      await audio.play();
+    } catch {
+      setAudioPlaying(false);
+    }
+  }
 
   function openDialog() {
     triggerRef.current = document.activeElement as HTMLElement;
@@ -255,6 +284,67 @@ export default function App() {
 
   return (
     <>
+      <audio
+        ref={audioRef}
+        src={soundtrack}
+        preload="auto"
+        loop={false}
+        onPlay={() => {
+          setAudioPlaying(true);
+          setAudioEnded(false);
+        }}
+        onPause={() => setAudioPlaying(false)}
+        onEnded={() => {
+          setAudioPlaying(false);
+          setAudioEnded(true);
+        }}
+        onError={() => setAudioError(true)}
+      />
+      <button
+        className="sound-toggle"
+        onClick={() => void toggleAudio()}
+        disabled={audioError}
+        aria-label={
+          audioError
+            ? "Music unavailable"
+            : audioPlaying
+              ? "Turn music off"
+              : audioEnded
+                ? "Replay music"
+                : "Play music"
+        }
+        aria-pressed={audioPlaying}
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m11 5-6 4H2v6h3l6 4z" />
+          {audioPlaying ? (
+            <>
+              <path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" />
+            </>
+          ) : (
+            <path d="m16 9 6 6m0-6-6 6" />
+          )}
+        </svg>
+        <span>
+          {audioError
+            ? "Music unavailable"
+            : audioPlaying
+              ? "Sound off"
+              : audioEnded
+                ? "Replay music"
+                : "Play music"}
+        </span>
+      </button>
       <a className="skip-link" href="#capabilities">
         Skip to content
       </a>
