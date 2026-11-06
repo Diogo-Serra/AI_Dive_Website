@@ -1,6 +1,6 @@
 {
-  "title": "Figma Make App",
-  "description": "An AI automation assistant for busy professionals that manages inboxes, coordinates calendars, and delivers daily briefings to help reclaim time.",
+  "title": "Vela — Reclaim your time",
+  "description": "Meet Vela. A lightweight, local-first AI companion imagined to handle repetitive daily tasks and give you time back.",
   "language": "en",
   "robots": {
     "index": false
