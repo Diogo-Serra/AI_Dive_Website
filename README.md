@@ -6,7 +6,32 @@ Vela is a concept landing page for a lightweight, local-first AI companion that 
 
 The site was designed and built as the final project of the **Santander Academy AI Dive Intensive**, a hands-on crash course exploring an AI-assisted creative workflow from first sketch to shipped page.
 
-![Vela social preview](public/vela-social.png)
+It also doubled as a deliberate test of what current AI tools can do. The goal was to explore Google's Gemini-powered creative suite — including **Flow** for image and video generation — and see how far a single person could take a concept from prompt to production.
+
+![Vela — a small horned snow creature with a backpack and scarf climbing a snowy mountain at sunrise](public/assets/vela-hero-poster.jpg)
+
+<p align="center">
+  <a href="https://aidivewebsite-omega.vercel.app/"><strong>View the live site →</strong></a>
+</p>
+
+## Preview
+
+[![Vela promo — a small horned snow creature climbs a snowy mountain and watches the sunrise from the summit](assets/vela-promo-preview.gif)](assets/Velapromo.mp4)
+
+*The animated preview above is a GIF rendition of this repository's promo reel: [`assets/Velapromo.mp4`](assets/Velapromo.mp4) (1280×720, ~8 s, original soundtrack). GitHub does not play local MP4 files inline, so the GIF stands in — open the MP4 for the full-quality cut with sound.*
+
+<details>
+<summary>Regenerating the GIF from the MP4</summary>
+
+```bash
+ffmpeg -i assets/Velapromo.mp4 \
+  -vf "fps=8,scale=520:-2:flags=lanczos,palettegen=max_colors=96:stats_mode=diff" palette.png
+ffmpeg -i assets/Velapromo.mp4 -i palette.png \
+  -lavfi "fps=8,scale=520:-2:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" \
+  assets/vela-promo-preview.gif
+```
+
+</details>
 
 ---
 
@@ -19,6 +44,7 @@ The project is a **front-end concept demo**. There is no backend, no accounts, a
 ## Highlights
 
 - **Cinematic hero** with a looping background video and poster fallback
+- **Promo reel** in the repository, previewed in this README as a lightweight animated GIF
 - **Interactive capability previews** for Inbox, Calendar, and Daily Tasks, built as real React components rather than screenshots
 - **Original soundtrack** with an accessible play / pause / replay control and a graceful fallback when autoplay is blocked
 - **Native `<dialog>` deployment modal** with focus restoration and a clearly labelled demo state
@@ -66,7 +92,7 @@ The app is served at `http://localhost:5173` by default. Inside Figma Make, a de
 
 ```text
 .
-├── assets/                     # Source media (hero, service art, soundtrack)
+├── assets/                     # Source media (promo video + GIF preview, hero poster, service art, soundtrack)
 ├── public/                     # Static files served as-is (icons, social card, video)
 ├── src/
 │   ├── App.tsx                 # Page layout, hero, navigation, modal, audio controls
@@ -81,17 +107,18 @@ The app is served at `http://localhost:5173` by default. Inside Figma Make, a de
 
 ## How it was made
 
-This project was an exercise in directing AI tools rather than writing every asset by hand:
+This project was an exercise in directing AI tools rather than writing every asset by hand — and in testing how capable those tools have become:
 
-| Stage           | Tool                                     |
-| --------------- | ---------------------------------------- |
-| Design          | **Figma** — layout, visual system, components |
-| Content         | **Gemini Flow** — copywriting and narrative |
-| Sound           | **Suno** — original soundtrack, "Dawn of a New Era" |
-| Code & assembly | **Figma Make** + React, Vite, Tailwind CSS |
-| Programme       | **Santander Academy AI Dive Intensive** — crash course |
+| Stage             | Tool                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Design            | **Figma** — layout, visual system, components                |
+| Imagery & video   | **Google Flow** (Gemini-powered) — character art, hero stills, promo reel |
+| Content           | **Google Gemini** — copywriting and narrative                |
+| Sound             | **Suno** — original soundtrack, "Dawn of a New Era"          |
+| Code & assembly   | **Figma Make** + React, Vite, Tailwind CSS                   |
+| Programme         | **Santander Academy AI Dive Intensive** — crash course       |
 
-The goal was to move from concept to a polished, responsive page within the constraints of an intensive course, using AI for design exploration, copy, and music while keeping the front-end implementation deliberate and accessible.
+The goal was to move from concept to a polished, responsive page within the constraints of an intensive course, using AI for design exploration, imagery, video, copy, and music while keeping the front-end implementation deliberate and accessible. The exercise was as much about learning where these tools help — fast exploration, consistent visual identity, quick iteration — as where a human still has to steer, edit, and make the final call.
 
 ## Accessibility & behaviour notes
 
