@@ -2,13 +2,13 @@
 
 > **Your time. Back to you.**
 
-Vela is a concept landing page for a lightweight, local-first AI companion that quietly handles the everyday — inbox, calendar, and daily tasks.
+Vela is a concept landing page for a lightweight, local-first AI companion that quietly handles the everyday - inbox, calendar, and daily tasks.
 
-The site was designed and built as the final project of the **Santander Academy AI Dive Intensive**, a hands-on crash course exploring an AI-assisted creative workflow from first sketch to shipped page.
+The site was designed and built as a project for the **Santander Academy AI Dive Intensive**, a hands-on crash course exploring an AI-assisted creative workflow from first sketch to shipped page.
 
-It also doubled as a deliberate test of what current AI tools can do. The goal was to explore Google's Gemini-powered creative suite — including **Flow** for image and video generation — and see how far a single person could take a concept from prompt to production.
+It also doubled as a deliberate test of what current AI tools can do. The goal was to explore Google's Gemini-powered creative suite - including **Flow** for image and video generation - and see how far a single person could take a concept from prompt to production.
 
-![Vela — a small horned snow creature with a backpack and scarf climbing a snowy mountain at sunrise](public/assets/vela-hero-poster.jpg)
+![Vela - a small horned snow creature with a backpack and scarf climbing a snowy mountain at sunrise](public/assets/vela-hero-poster.jpg)
 
 <p align="center">
   <a href="https://aidivewebsite-omega.vercel.app/"><strong>View the live site →</strong></a>
@@ -16,9 +16,9 @@ It also doubled as a deliberate test of what current AI tools can do. The goal w
 
 ## Preview
 
-[![Vela promo — a small horned snow creature climbs a snowy mountain and watches the sunrise from the summit](assets/vela-promo-preview.gif)](assets/Velapromo.mp4)
+[![Vela promo - a small horned snow creature climbs a snowy mountain and watches the sunrise from the summit](assets/vela-promo-preview.gif)](assets/Velapromo.mp4)
 
-*The animated preview above is a GIF rendition of this repository's promo reel: [`assets/Velapromo.mp4`](assets/Velapromo.mp4) (1280×720, ~8 s, original soundtrack). GitHub does not play local MP4 files inline, so the GIF stands in — open the MP4 for the full-quality cut with sound.*
+*The animated preview above is a GIF rendition of this repository's promo reel: [`assets/Velapromo.mp4`](assets/Velapromo.mp4) (1280×720, ~8 s, original soundtrack). GitHub does not play local MP4 files inline, so the GIF stands in - open the MP4 for the full-quality cut with sound.*
 
 <details>
 <summary>Regenerating the GIF from the MP4</summary>
@@ -39,7 +39,7 @@ ffmpeg -i assets/Velapromo.mp4 -i palette.png \
 
 Vela imagines a calmer relationship with technology: less inbox noise, more breathing room in the calendar, and the small tasks already taken care of. The page pairs editorial typography and a warm, natural palette with interactive product previews and a short cinematic hero.
 
-The project is a **front-end concept demo**. There is no backend, no accounts, and no data collection — the "Deploy Vela" form intentionally does not submit anything.
+The project is a **front-end concept demo**. There is no backend, no accounts, and no data collection - the "Deploy Vela" form intentionally does not submit anything.
 
 ## Highlights
 
@@ -107,18 +107,18 @@ The app is served at `http://localhost:5173` by default. Inside Figma Make, a de
 
 ## How it was made
 
-This project was an exercise in directing AI tools rather than writing every asset by hand — and in testing how capable those tools have become:
+This project was an exercise in directing AI tools rather than writing every asset by hand - and in testing how capable those tools have become:
 
 | Stage             | Tool                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Design            | **Figma** — layout, visual system, components                |
-| Imagery & video   | **Google Flow** (Gemini-powered) — character art, hero stills, promo reel |
-| Content           | **Google Gemini** — copywriting and narrative                |
-| Sound             | **Suno** — original soundtrack, "Dawn of a New Era"          |
+| Design            | **Figma** - layout, visual system, components                |
+| Imagery & video   | **Google Flow** (Gemini-powered) - character art, hero stills, promo reel |
+| Content           | **Google Gemini** - copywriting and narrative                |
+| Sound             | **Suno** - original soundtrack, "Dawn of a New Era"          |
 | Code & assembly   | **Figma Make** + React, Vite, Tailwind CSS                   |
-| Programme         | **Santander Academy AI Dive Intensive** — crash course       |
+| Programme         | **Santander Academy AI Dive Intensive** - crash course       |
 
-The goal was to move from concept to a polished, responsive page within the constraints of an intensive course, using AI for design exploration, imagery, video, copy, and music while keeping the front-end implementation deliberate and accessible. The exercise was as much about learning where these tools help — fast exploration, consistent visual identity, quick iteration — as where a human still has to steer, edit, and make the final call.
+The goal was to move from concept to a polished, responsive page within the constraints of an intensive course, using AI for design exploration, imagery, video, copy, and music while keeping the front-end implementation deliberate and accessible. The exercise was as much about learning where these tools help - fast exploration, consistent visual identity, quick iteration - as where a human still has to steer, edit, and make the final call.
 
 ## Accessibility & behaviour notes
 
